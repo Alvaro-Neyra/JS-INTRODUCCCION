@@ -134,11 +134,22 @@ function saveProduct(id) {
     photo: product.photo[0],
     quantity: document.querySelector("input").value,
   };
-  //convierta a JSON el objeto
-  const productJSON = JSON.stringify(objectProduct);
 
-  //guarde el objeto en la memoria del navegador
-  localStorage.setItem(product.id, productJSON);
+  // Verificar si la clave 'cart' existe en localStorage
+  if (localStorage.getItem('cart')) {
+    // Si existe, obtener el contenido y convertirlo de nuevo en un array
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    // Agregar el nuevo producto al array
+    cart.push(objectProduct);
+    // Guardar el array actualizado en el storage
+    localStorage.setItem("cart", JSON.stringify(cart));
+  } else {
+    // Si no existe, crear un nuevo array con el producto y guardarlo en el storage
+    let cart = [objectProduct];
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+  
+  
   
 }
 
