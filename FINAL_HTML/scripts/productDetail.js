@@ -81,7 +81,7 @@ function printDetails(id){
               <div class="checkout-process">
                 <div class="top">
                   <input type="number" min="1" value="1" onclick="changePrice(event)" />
-                  <button type="button" class="cart-btn">
+                  <button type="button" class="cart-btn" onclick="saveProduct(${product.id})">
                     Añadir al Carrito
                   </button>
                 </div>
@@ -117,6 +117,29 @@ function changePrice(event){
   const priceSelector = document.querySelector("#price");
   //cambiar el precio total
   priceSelector.innerHTML = `$${quantity * product.price}`;
+}
+
+/**
+ * Definir función para añadir al carrito
+ */
+function saveProduct(id) {
+  //traer el producto
+  const product = products.find(product => product.id == id);
+  //defina un objeto con las propiedades especificadas en la compra
+  const objectProduct = {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    color: document.querySelector("#color").value,
+    photo: product.photo[0],
+    quantity: document.querySelector("input").value,
+  };
+  //convierta a JSON el objeto
+  const productJSON = JSON.stringify(objectProduct);
+
+  //guarde el objeto en la memoria del navegador
+  localStorage.setItem(product.id, productJSON);
+  
 }
 
 printDetails(id);
