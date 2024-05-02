@@ -52,21 +52,6 @@
         </ul>
       </div>
       <nav id="navbar">
-        <li class="nav-li">
-          <a class="nav-a" href="#">Ofertas</a>
-        </li>
-        <li class="nav-li">
-          <a class="nav-a" href="#">Cómo comprar</a>
-        </li>
-        <li class="nav-li">
-          <a class="nav-a" href="#">Costos y tarifas</a>
-        </li>
-        <li class="nav-li">
-          <a class="nav-a" href="#">Mis pedidos</a>
-        </li>
-        <li class="nav-li">
-          <a class="nav-a" href="#">Garantía</a>
-        </li>
       </nav>
     </header>
     <section class="hero-section">
@@ -75,66 +60,38 @@
         <span class="hero-span">carrito</span>
       </article>
     </section>
-    <main></main>
+    <main>
+      <div class="container">
+        <article class="product-cart" id="product-cart">
+          
+          <img class="product-img" src="./assets/mock1.jpg">
+  
+          <div class="product-details">
+            <div class="title-product">Nombre del Producto</div>
+            <div class="color-product">Color del producto</div>
+            <div class="product-description">Descripcion del producto</div>
+            <!--Mostrar la cantidad a comprar-->
+            <div class="product-input">2</div>
+          </div>
+          <div class="product-price">
+            $ 100.00
+          </div>
+        </article>
+      </div>
+      
+      <article class="cart-resume" id="total">
+        <h1 class="cart-title">Resumen del pedido</h1>
+        <p class="cart-total">Subtotal        $4</p>
+        <p class="cart-tax">Taxes</p>
+        <button class="cart-btn">Comprar</button>
+      </article>
+    </main>
     <footer>
       <div id="footer" class="footer-container">
-        <ul class="footer-ul">
-          <li class="footer-main-item">
-            <a class="footer-a" href="./index.html">Ofertas</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Laptops</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Audio</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Auriculares</a>
-          </li>
-        </ul>
-        <ul class="footer-ul">
-          <li class="footer-main-item">
-            <a class="footer-a" href="./index.html">Cómo comprar</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Formas de pago</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Envios</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Devoluciones</a>
-          </li>
-        </ul>
-        <ul class="footer-ul">
-          <li class="footer-main-item">
-            <a class="footer-a" href="./index.html">Costos y tarifas</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Impuestos</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Facturación</a>
-          </li>
-        </ul>
-        <ul class="footer-ul">
-          <li class="footer-main-item">
-            <a class="footer-a" href="./index.html">Mis pedidos</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Pedir nuevamente</a>
-          </li>
-          <li class="footer-li">
-            <a class="footer-a" href="./index.html">Lista de deseos</a>
-          </li>
-        </ul>
-        <ul class="footer-ul">
-          <li class="footer-main-item">
-            <a class="footer-a" href="./index.html">Garantía</a>
-          </li>
-        </ul>
+        
       </div>
       <div class="footer-copyright">Curso de HTML + CSS 2023</div>
     </footer>
+    <script src="./scripts/layout.js"></script>
   </body>
 </html>
