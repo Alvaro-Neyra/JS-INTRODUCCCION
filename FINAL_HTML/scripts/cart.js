@@ -6,18 +6,26 @@ let cartproducts = JSON.parse(localStorage.getItem('cart'));
  */
 //Definir funcion printCart
 function printCart() {
-  //Traer el selector del contenedor de productos
-  const container = document.querySelector(".container");
-  //Limpiar el contenedor
-  container.innerHTML = "";
-  //Iterar sobre los productos del carrito
-  cartproducts.forEach(product => {
-    //Crear un div que contenga la información del producto
-    const productDiv = document.createElement("article");
-    //Agregar la clase product al div
-    productDiv.classList.add("product-cart");
-    //Agregar el contenido al div
-    productDiv.innerHTML = `
+    //Traer el selector del contenedor de productos
+    const container = document.querySelector(".container");
+    //Limpiar el contenedor
+    container.innerHTML = "";
+
+    if (cartproducts === null || cartproducts.length === 0) {
+        container.innerHTML = `
+    <article class="product-cart">
+        <div class="title-product">No hay productos en el carrito</div>
+    </article>
+    `;
+    } else {
+        //Iterar sobre los productos del carrito
+        cartproducts.forEach(product => {
+            //Crear un div que contenga la información del producto
+            const productDiv = document.createElement("article");
+            //Agregar la clase product al div
+            productDiv.classList.add("product-cart");
+            //Agregar el contenido al div
+            productDiv.innerHTML = `
     <img class="product-img" src="${product.photo}">
   
     <div class="product-details">
@@ -32,9 +40,10 @@ function printCart() {
      Subtotal $ ${product.price * product.quantity}.00
     </div>
     `;
-    //Agregar el div al contenedor
-    container.appendChild(productDiv);
-  });
+            //Agregar el div al contenedor
+            container.appendChild(productDiv);
+        });
+    }
 }
 
 /**
@@ -44,22 +53,26 @@ function printCart() {
 function printTotal() {
     //Definir variable para almacenar el precio total
     let totalPrice = 0;
-    //Iterar sobre los productos del carrito
-    cartproducts.forEach(product => {
-      //Sumar el precio de cada producto al total
-      totalPrice = totalPrice + (product.price * product.quantity);
-    });
 
-  //Traer el selector del contenedor del total
-  const totalContainer = document.querySelector("#total");
-  //Limpiar el contenedor
-  totalContainer.innerHTML = "";
-  //Agregar el html
+    if (cartproducts !== null || cartproducts.length !== 0) {
+
+        //Iterar sobre los productos del carrito
+        cartproducts.forEach(product => {
+            //Sumar el precio de cada producto al total
+            totalPrice = totalPrice + (product.price * product.quantity);
+        });
+    }
+
+    //Traer el selector del contenedor del total
+    const totalContainer = document.querySelector("#total");
+    //Limpiar el contenedor
+    totalContainer.innerHTML = "";
+    //Agregar el html
     totalContainer.innerHTML = `
     <h1 class="cart-title">Resumen del pedido</h1>
         <p class="cart-total">Total        USD $${totalPrice}</p>
         <p class="cart-tax">Taxes</p>
-        <button class="cart-btn">Comprar</button>
+        <button class="cart-btn" id="buy" type="button">COMPRAR</button>
     `;
 }
 
@@ -68,24 +81,22 @@ function printTotal() {
  */
 //Definir función changeQuantity
 function changeQuantity(event) {
-  //Traer el id del producto
-  const id = event.target.id.split("_");
-  //Traer el valor de la cantidad
-  const quantity = event.target.value;
-  //Iterar sobre los productos del carrito
-  cartproducts.forEach(product => {
-    //Verificar si el id del producto es igual al id del producto seleccionado
-    if (product.id == id[0] && product.color == id[1]) {
-      //Cambiar la cantidad del producto
-      product.quantity = quantity;
-    }
-  });
-  //Guardar el carrito en localStorage
-  localStorage.setItem('cart', JSON.stringify(cartproducts));
-  //Renderizar los productos del carrito
-  printCart();
-  //Renderizar el total a pagar
-  printTotal();
+    //Traer el id del producto
+    const id = event.target.id.split("_");
+    //Traer el valor de la cantidad
+    const quantity = event.target.value;
+    //Iterar sobre los productos del carrito
+    cartproducts.forEach(product => {
+        //Verificar si el id del producto es igual al id del producto seleccionado
+        if (product.id == id[0] && product.color == id[1]) {
+            //Cambiar la cantidad del producto
+            product.quantity = quantity;
+        }
+    });
+    //Guardar el carrito en localStorage
+    localStorage.setItem('cart', JSON.stringify(cartproducts));
+    printCart();
+    printTotal();
 }
 
 printCart();
