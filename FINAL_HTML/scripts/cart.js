@@ -23,7 +23,6 @@ function printCart() {
     <div class="product-details">
       <div class="title-product">${product.title}</div>
       <div class="color-product">${product.color}</div>
-      <div class="product-description">Descripcion del producto</div>
       <!--Mostrar la cantidad a comprar-->
       <div class="product-input">${product.quantity}</div>
     </div>
