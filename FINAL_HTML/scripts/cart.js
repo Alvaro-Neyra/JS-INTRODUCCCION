@@ -24,7 +24,7 @@ function printCart() {
       <div class="title-product">${product.title}</div>
       <div class="color-product">${product.color}</div>
       <!--Mostrar la cantidad a comprar-->
-      <div class="product-input">${product.quantity}</div>
+      <input class="product-input" type="number" name="quantity" min="1" id="${product.id}_${product.color}" value="${product.quantity}" onchange="changeQuantity(event)">
     </div>
     <div class="product-price">
         P.U. $ ${product.price}.00 <br>
@@ -61,6 +61,31 @@ function printTotal() {
         <p class="cart-tax">Taxes</p>
         <button class="cart-btn">Comprar</button>
     `;
+}
+
+/**
+ * Evento changeQuantity(event) para cambiar la cantidad de productos en el carrito
+ */
+//Definir función changeQuantity
+function changeQuantity(event) {
+  //Traer el id del producto
+  const id = event.target.id.split("_");
+  //Traer el valor de la cantidad
+  const quantity = event.target.value;
+  //Iterar sobre los productos del carrito
+  cartproducts.forEach(product => {
+    //Verificar si el id del producto es igual al id del producto seleccionado
+    if (product.id == id[0] && product.color == id[1]) {
+      //Cambiar la cantidad del producto
+      product.quantity = quantity;
+    }
+  });
+  //Guardar el carrito en localStorage
+  localStorage.setItem('cart', JSON.stringify(cartproducts));
+  //Renderizar los productos del carrito
+  printCart();
+  //Renderizar el total a pagar
+  printTotal();
 }
 
 printCart();
