@@ -54,7 +54,7 @@ function printTotal() {
     //Definir variable para almacenar el precio total
     let totalPrice = 0;
 
-    if (cartproducts !== null || cartproducts.length !== 0) {
+    if (cartproducts !== null ) {
 
         //Iterar sobre los productos del carrito
         cartproducts.forEach(product => {
@@ -70,10 +70,18 @@ function printTotal() {
     //Agregar el html
     totalContainer.innerHTML = `
     <h1 class="cart-title">Resumen del pedido</h1>
-        <p class="cart-total">Total        USD $${totalPrice}</p>
+        <p class="cart-total">Total        USD $${(totalPrice !== null || totalPrice !=0) ? totalPrice : 0 }</p>
         <p class="cart-tax">Taxes</p>
         <button class="cart-btn" id="buy" type="button">COMPRAR</button>
     `;
+    const buySelector = document.getElementById("buy");
+
+    buySelector.addEventListener("click", () => {
+        //Borrar los productos del carrito
+        localStorage.removeItem('cart');
+        //Redirigir a la página de inicio
+        window.location.href = "./cart.html";
+    });
 }
 
 /**
