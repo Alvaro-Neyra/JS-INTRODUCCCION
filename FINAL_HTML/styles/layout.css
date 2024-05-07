@@ -65,8 +65,12 @@ header {
 }
 .header-social-img {
   padding: 10px;
+  color: white;
 }
-
+.star {
+  padding-top: 15px;
+  font-size: 20px;
+}
 /* NAVBAR */
 nav {
   width: 1080px;

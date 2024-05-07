@@ -47,6 +47,19 @@
   text-overflow: ellipsis;
   font-size: 12px;
 }
+.favoritos-button {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #efdf00;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.favoritos-button:hover {
+  background-color: #efdf00ad;
+}
 .product-input {
   width: 70px;
   height: 40px;

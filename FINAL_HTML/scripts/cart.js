@@ -5,7 +5,8 @@ let cartproducts = JSON.parse(localStorage.getItem('cart'));
  * Renderizar dinámicamente los productos del carrito
  */
 //Definir funcion printCart
-function printCart() {
+function printCart(id) {
+    const product = cartproducts.find(product => product.id == id);
     //Traer el selector del contenedor de productos
     const container = document.querySelector(".container");
     //Limpiar el contenedor
@@ -38,6 +39,7 @@ function printCart() {
         P.U. $ ${product.price}.00 <br>
         --------------- <br>
      Subtotal $ ${product.price * product.quantity}.00
+     <button type="button" class="favoritos-button" onclick="starItem(${product.id})" >Anadir a favoritos</button>
     </div>
     `;
             //Agregar el div al contenedor
@@ -105,6 +107,27 @@ function changeQuantity(event) {
     localStorage.setItem('cart', JSON.stringify(cartproducts));
     printCart();
     printTotal();
+}
+
+function starItem(id) {
+    const product = cartproducts.find(product => product.id == id);
+    const objectProduct = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        photo: product.photo[0],
+        quantity: document.querySelector("input").value
+    }
+
+    if(localStorage.getItem('favorites')) {
+        let favorites = JSON.parse(localStorage.getItem('favorites'));
+
+        favorites.push(objectProduct);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    } else {
+        let favorites = [objectProduct];
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
 }
 
 printCart();
